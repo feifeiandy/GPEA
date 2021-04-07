@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.HuiyiMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Entity.Huiyi">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Year" jdbcType="INTEGER" property="year" />
+    <result column="MonthDay" jdbcType="VARCHAR" property="monthDay" />
+    <result column="Month" jdbcType="INTEGER" property="month" />
+    <result column="Day" jdbcType="INTEGER" property="day" />
+    <result column="Week" jdbcType="INTEGER" property="week" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.Entity.Huiyi">
+    <result column="Contet" jdbcType="LONGVARCHAR" property="contet" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, Year, MonthDay, Month, Day, Week
+  </sql>
+  <sql id="Blob_Column_List">
+    Contet
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.demo.Entity.HuiyiExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Huiyi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.demo.Entity.HuiyiExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Huiyi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Huiyi
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Huiyi
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.Entity.HuiyiExample">
+    delete from Huiyi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.Entity.Huiyi">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Huiyi (Year, MonthDay, Month, 
+      Day, Week, Contet
+      )
+    values (#{year,jdbcType=INTEGER}, #{monthDay,jdbcType=VARCHAR}, #{month,jdbcType=INTEGER}, 
+      #{day,jdbcType=INTEGER}, #{week,jdbcType=INTEGER}, #{contet,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Entity.Huiyi">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Huiyi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="year != null">
+        Year,
+      </if>
+      <if test="monthDay != null">
+        MonthDay,
+      </if>
+      <if test="month != null">
+        Month,
+      </if>
+      <if test="day != null">
+        Day,
+      </if>
+      <if test="week != null">
+        Week,
+      </if>
+      <if test="contet != null">
+        Contet,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="monthDay != null">
+        #{monthDay,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=INTEGER},
+      </if>
+      <if test="week != null">
+        #{week,jdbcType=INTEGER},
+      </if>
+      <if test="contet != null">
+        #{contet,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.Entity.HuiyiExample" resultType="java.lang.Long">
+    select count(*) from Huiyi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Huiyi
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.year != null">
+        Year = #{record.year,jdbcType=INTEGER},
+      </if>
+      <if test="record.monthDay != null">
+        MonthDay = #{record.monthDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.month != null">
+        Month = #{record.month,jdbcType=INTEGER},
+      </if>
+      <if test="record.day != null">
+        Day = #{record.day,jdbcType=INTEGER},
+      </if>
+      <if test="record.week != null">
+        Week = #{record.week,jdbcType=INTEGER},
+      </if>
+      <if test="record.contet != null">
+        Contet = #{record.contet,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update Huiyi
+    set Id = #{record.id,jdbcType=INTEGER},
+      Year = #{record.year,jdbcType=INTEGER},
+      MonthDay = #{record.monthDay,jdbcType=VARCHAR},
+      Month = #{record.month,jdbcType=INTEGER},
+      Day = #{record.day,jdbcType=INTEGER},
+      Week = #{record.week,jdbcType=INTEGER},
+      Contet = #{record.contet,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Huiyi
+    set Id = #{record.id,jdbcType=INTEGER},
+      Year = #{record.year,jdbcType=INTEGER},
+      MonthDay = #{record.monthDay,jdbcType=VARCHAR},
+      Month = #{record.month,jdbcType=INTEGER},
+      Day = #{record.day,jdbcType=INTEGER},
+      Week = #{record.week,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.Entity.Huiyi">
+    update Huiyi
+    <set>
+      <if test="year != null">
+        Year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="monthDay != null">
+        MonthDay = #{monthDay,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        Month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="day != null">
+        Day = #{day,jdbcType=INTEGER},
+      </if>
+      <if test="week != null">
+        Week = #{week,jdbcType=INTEGER},
+      </if>
+      <if test="contet != null">
+        Contet = #{contet,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.Entity.Huiyi">
+    update Huiyi
+    set Year = #{year,jdbcType=INTEGER},
+      MonthDay = #{monthDay,jdbcType=VARCHAR},
+      Month = #{month,jdbcType=INTEGER},
+      Day = #{day,jdbcType=INTEGER},
+      Week = #{week,jdbcType=INTEGER},
+      Contet = #{contet,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.Entity.Huiyi">
+    update Huiyi
+    set Year = #{year,jdbcType=INTEGER},
+      MonthDay = #{monthDay,jdbcType=VARCHAR},
+      Month = #{month,jdbcType=INTEGER},
+      Day = #{day,jdbcType=INTEGER},
+      Week = #{week,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
