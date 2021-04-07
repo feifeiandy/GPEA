@@ -1,2 +1,7 @@
 server:
   port: 8090
+thymeleaf:
+  cache: false # 关闭缓存
+  mode: LEGACYHTML5 # 去除htm5严格校验
+  prefix: classpath:/templates/ # 指定 thymeleaf 模板路径
+  encoding: UTF-8 # 指定字符集编码

@@ -1,0 +1,90 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+/*去掉连接下划线*/
+a{
+    text-decoration: none;
+}
+.mainDiv{
+    width: 1200px;
+    /*居中*/
+    margin: auto;
+}
+.headDiv
+{
+    height: 42px;
+    background-color: pink;
+}
+.logohead{
+    float: left;
+    width: 150px;
+    /*需要在这里设置背景图片*/
+}
+.logohead img{
+    height: 42px;
+}
+.logogo{
+    float: left;
+    height: 42px;
+    margin-left: 60px;
+}
+.logogo ul
+{
+    margin: 0;
+    padding: 0;
+}
+.logogo ul li{
+    display: inline-block;
+    margin: 0 15px;
+}
+.logogo ul li a{
+    display: block;
+    color: #050505;
+    line-height: 42px;
+    height: 42px;
+    font-size: 18px;
+}
+.logogo ul li a:hover{
+    border-bottom: 2px solid #00a4ff;
+}
+.searchDiv{
+    float: left;
+    width: 412px;
+    height: 42px;
+    margin-left: 100px;
+}
+
+.searchDiv input{
+    width: 360px;
+    height: 36px;
+    float: left;
+    outline: transparent;
+    font-size:18px;
+}
+.searchDiv button {
+    width: 40px;
+    height: 42px;
+    float: left;
+    background-image: url("../image/icon/search.png");
+    border: 0px;
+    outline: pink;
+}
+/*用户样式*/
+.userDiv{
+    float:right;
+    width: 150px;
+}
+.userDiv img{
+    height: 42px;
+    background: skyblue;
+    float: left;
+}
+.userDiv a
+{
+    display: block;
+    float: left;
+    line-height: 42px;
+    margin-left: 30px;
+}
