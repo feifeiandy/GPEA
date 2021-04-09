@@ -1,4 +1,13 @@
-
+.clearfix:after{/*伪元素是行内元素 正常浏览器清除浮动方法*/
+    content: "";
+    display: block;
+    height: 0;
+    clear:both;
+    visibility: hidden;
+}
+.clearfix {
+    *zoom: 1; /*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
+}
 body {
     margin: 0;
     padding: 0;
@@ -20,6 +29,7 @@ a{
 .logohead{
     float: left;
     width: 150px;
+    height: 42px;
     /*需要在这里设置背景图片*/
 }
 .logohead img{
@@ -87,4 +97,28 @@ a{
     float: left;
     line-height: 42px;
     margin-left: 30px;
+}
+
+/*头部结束，主体*/
+.mainBodyDiv{
+    height: 800px;
+    background-color: lightblue;
+}
+.navDiv{
+    width: 200px;
+    background-color: lightskyblue;
+    height: 800px;
+    float: left;
+}
+.navBodyDiv{
+    float: left;
+    width: 1000px;
+    background-color: lightsalmon;
+    height: 800px;
+}
+.navBodyDiv iframe{
+    width: 1000px;
+    height: 800px;
+    border-width: 0px;
+    background-color: lightgreen;
 }
