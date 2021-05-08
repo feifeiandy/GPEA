@@ -1,7 +1,11 @@
 package com.example.demo.Shiro;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -39,5 +43,23 @@ public class ShiroConfig {
         map.put("/**", "authc");
         bean.setFilterChainDefinitionMap(map);
         return bean;
+    }
+
+    /*很重要页面授权是否有效*/
+    @Bean
+    public ShiroDialect shiroDialect(){
+        return new ShiroDialect();
+    }
+    @Bean
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
+    }
+
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("securityManager") DefaultWebSecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+        advisor.setSecurityManager(securityManager);
+        return advisor;
     }
 }

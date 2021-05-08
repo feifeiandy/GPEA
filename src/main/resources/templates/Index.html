@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
@@ -12,11 +12,11 @@
                     <img src="image/resizeApi.png">
                 </div>
                 <div class="logogo">
-                    <ul>
-                        <li><a href="#">首页</a></li>
-                        <li><a href="#">课程</a></li>
-                        <li><a href="#">职业规划</a></li>
-                    </ul>
+                        <ul shiro:hasPermission="'SysManager:user:list'" shiro:hasRole="admin">
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#">课程</a></li>
+                            <li><a href="#">职业规划</a></li>
+                        </ul>
                 </div>
                 <div class="searchDiv">
                     <input type="text">
