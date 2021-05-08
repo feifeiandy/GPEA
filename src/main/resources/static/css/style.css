@@ -12,6 +12,10 @@ body {
     margin: 0;
     padding: 0;
 }
+.w{
+    width: 800px;
+    overflow:hidden;
+}
 /*去掉连接下划线*/
 a{
     text-decoration: none;
@@ -109,6 +113,9 @@ a{
     background-color: lightskyblue;
     height: 800px;
     float: left;
+}
+.navDiv li{
+    list-style: none;
 }
 .navBodyDiv{
     float: left;

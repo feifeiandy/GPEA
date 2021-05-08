@@ -4,8 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title>会议日程</title>
+    <link rel="stylesheet" href="css/mycss.css">
 </head>
 <body>
-    <h1>会议</h1>
+<div id="fishDiv" class="w fw mydiv">
+    <ul id="fishbone" class="fishbone clearfix"></ul>
+</div>
+<script type="text/javascript" src="js/myjs.js"></script>
+<script>
+    // var data=[{"month":"1","event":[{"id":"1101","value":"亚洲峰会"},{"id":"1101","value":"体育赛事"}]},{"month":"2","event":[{"id":"1102","value":"亚洲峰会2"},{"id":"1102","value":"体育赛事2"}]},
+    //     {"month":"3","event":[{"id":"1103","value":"亚洲峰会3"},{"id":"1103","value":"体育赛事3"}]},{"month":"4","event":[{"id":"1104","value":"亚洲峰会4"},{"id":"1104","value":"体育赛事4"}]},
+    //     {"month":"5","event":[{"id":"1105","value":"亚洲峰会5"},{"id":"1105","value":"体育赛事5"}]},{"month":"6","event":[{"id":"1106","value":"亚洲峰会6"},{"id":"1106","value":"体育赛事6"}]},
+    //     {"month":"7","event":[{"id":"1107","value":"亚洲峰会7"},{"id":"1107","value":"体育赛事7"}]},{"month":"8","event":[{"id":"1108","value":"亚洲峰会8"},{"id":"1108","value":"体育赛事8"}]}];
+    window.onload = function () {
+        let http = new XMLHttpRequest();
+        const url = "/PullHuiyiData";
+        http.open("get", url);
+        http.send();
+        http.onreadystatechange = (e) => {
+            if (http.readyState == 4||http.readyState==200) {
+                let data= JSON.parse(http.responseText);
+                pullData("fishbone", data);
+                let date = new Date();
+                let offset = date.getMonth() + 2;
+                // 获取当前月份，当前是几月份就滚动 月份*100；
+                var fishDiv = document.getElementById('fishDiv');
+                fishDiv.scrollLeft = offset * 250;
+            }
+        }
+    }
+</script>
 </body>
 </html>

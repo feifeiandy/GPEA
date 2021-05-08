@@ -284,4 +284,15 @@
       Week = #{week,jdbcType=INTEGER}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+
+  <resultMap id="huiyigroupMap" type="com.example.demo.Entity.HuiyiGroup">
+    <id property="month" column="month"></id>
+    <collection property="huiyis" ofType="com.example.demo.Entity.Huiyi" javaType="java.util.ArrayList">
+      <result property="monthDay" column="monthDay"></result>
+      <result property="contet" column="contet"></result>
+    </collection>
+  </resultMap>
+  <select id="getgroups" resultMap="huiyigroupMap">
+    select [Month],monthDay,Contet,[Year]from huiyi where [Year]=YEAR(GETDATE()) ORDER BY [Month],MonthDay
+  </select>
 </mapper>

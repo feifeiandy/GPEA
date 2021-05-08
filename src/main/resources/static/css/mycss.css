@@ -1,0 +1,46 @@
+.fw{
+    overflow: auto;
+    height: 200px;
+
+}
+.fishbone
+{
+    width: 5000px;
+    display: block;
+    padding: 0px;
+    white-space: nowrap;
+
+}
+
+/*会议列表的每一个块*/
+.fishul{
+    display: inline-block;
+    float: left;
+    width: 400px;
+    overflow: hidden;
+}
+/*会议列表每一个块中的每一行*/
+.fishli{
+    list-style: none;
+    display: block;
+}
+
+.mydiv::-webkit-scrollbar{
+    width:8px;
+    height:8px;
+    background-color: #61B6EB;
+}
+.mydiv::-webkit-scrollbar-track{
+    background: #213147;
+    border-radius:2px;
+}
+.mydiv::-webkit-scrollbar-thumb{
+    background: #61B6EB;
+    border-radius:2px;
+}
+.mydiv::-webkit-scrollbar-thumb:hover{
+    background: #61B6EB;
+}
+.mydiv::-webkit-scrollbar-corner{
+    background: #61B6EB;
+}

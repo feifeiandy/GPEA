@@ -1,7 +1,11 @@
 server:
   port: 8090
-thymeleaf:
-  cache: false # 关闭缓存
-  mode: LEGACYHTML5 # 去除htm5严格校验
-  prefix: classpath:/templates/ # 指定 thymeleaf 模板路径
-  encoding: UTF-8 # 指定字符集编码
+mybatis:
+  mapper-locations: classpath:Mapper/*Mapper.xml
+  type-aliases-package: com.example.demo.Entity
+spring:
+  datasource:
+    url: jdbc:sqlserver://127.0.0.1;DatabaseName=GPEA
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: sa
+    password: 123456

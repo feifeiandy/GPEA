@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.OtherEntity.Man;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,4 +11,11 @@ public class IndexController {
     {
         return "Index";
     }
+
+    @RequestMapping("/man")
+    public String GetMan( Man man)
+    {
+        return man.getName();
+    }
 }
+
